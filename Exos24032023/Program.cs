@@ -1,4 +1,7 @@
-﻿//1.1 (Conditionelles)
+﻿#region Exos 24.03.2023
+
+#region Exos 1 Conditionelle
+//1.1 (Conditionelles)
 //
 //Demander à l’utilisateur d’encoder 1 nombre ( int ), si la somme des deux moitiés de celui ci donne le nombre, afficher « le nombre est paire »
 //sinon « le nombre est impaire ».
@@ -37,3 +40,21 @@ else
 
 Console.ReadLine();
 
+#endregion
+
+#region Exos 2 Opérateurs
+
+// 2.1
+
+
+
+
+
+
+#endregion
+
+
+
+
+
+#endregion
