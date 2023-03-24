@@ -89,7 +89,6 @@
 
 #endregion
 
-
 #region 2.3 Check BBAN
 
 // 2.3
@@ -114,19 +113,40 @@
 ////petit ajout pour le fun à l'affichage
 ////Thread.Sleep(3000);
 ////Console.Clear();
-//long DixPremiersBBAN = long.Parse(BBANUser.Substring(0,10));
-//int DeuxDerniersBBAN = int.Parse(BBANUser.Substring(10,2));
+//long DixPremiersBBAN = long.Parse(BBANUser.Substring(0, 10));
+//int DeuxDerniersBBAN = int.Parse(BBANUser.Substring(10, 2));
 
 //int ModuloDixPremiers = (int)DixPremiersBBAN % 97;
 //Console.WriteLine(ModuloDixPremiers == DeuxDerniersBBAN || (ModuloDixPremiers == 0 && DeuxDerniersBBAN == 97) ? "OK" : "KO");
 
 #endregion
 
-
 #region 2.4 BBAN into IBAN
 
 //2.4//Transformer un compte bancaire BBAN Belge (xxx xxxxxxx xx) en IBAN(BExx xxxx xxxx xxxx). Trouvez la démarche via un moteur de
 //recherche.
+// Mon Iban = BE64 0632 2538 1252
+
+//BBAN to IBAN
+//1) Créer un IBAN temporaire, composé du code du pays : FR pour la France, suivi de " 00 " et du " code RIB "
+//2) Déplacer les 4 premiers caractères de l’IBAN vers la droite du numéro.
+//3) Convertir les lettres en chiffres, selon le principe "A" vaut "10" ... "Z" vaut "35".
+//4) Calculer le modulo 97 et retrancher le reste de 98. Si le résultat comporte un seul chiffre, insérer un zéro devant.
+//Insérer le résultat ainsi obtenu à la position 3 de l’IBAN temporaire créé dans l’étape 1
+
+////test rapide 1
+//int test1 = 2253812 % 97;
+//Console.WriteLine(test1);
+
+
+
+
+
+
+
+
+
+
 
 
 
