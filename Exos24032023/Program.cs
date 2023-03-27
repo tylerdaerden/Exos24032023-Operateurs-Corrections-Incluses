@@ -172,7 +172,7 @@ string tempIban = BBANUser + codePaysBE + "00";
 int ModuloIban = (int)(long.Parse(tempIban) % 97);
 int Reste = 98 - (int)ModuloIban;
 
-string CleControle = Reste.ToString("D2");// je passe par un To.String avec "2 Digits" soit une chaine de 2 chiffres pour la clé, comme ça un zéro sera mis si on obtient un seul chiffre
+string CleControle = Reste.ToString("D2");// je passe par un To.String avec "2 Digits" soit une chaine de 2 chiffres pour la clé, comme ça un zéro sera mis si on obtient un seul chiffre (source https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings ) , c'est aussi pourquoi j'ai converti le Modulo et le reste en INT car les décimales ne supportent que les int 
 
 //Reassamblage final 
 string IBANUser = "BE" + CleControle + BBANUser;
@@ -182,13 +182,6 @@ Console.ReadLine();
 
 #endregion
 
-
-
-
 #endregion
-
-
-
-
 
 #endregion
