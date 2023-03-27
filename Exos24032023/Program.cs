@@ -125,32 +125,61 @@
 
 //2.4//Transformer un compte bancaire BBAN Belge (xxx xxxxxxx xx) en IBAN(BExx xxxx xxxx xxxx). Trouvez la démarche via un moteur de
 //recherche.
-// Mon Iban = BE64 0632 2538 1252
 
-//BBAN to IBAN
-//1) Créer un IBAN temporaire, composé du code du pays : FR pour la France, suivi de " 00 " et du " code RIB "
-//2) Déplacer les 4 premiers caractères de l’IBAN vers la droite du numéro.
-//3) Convertir les lettres en chiffres, selon le principe "A" vaut "10" ... "Z" vaut "35".
-//4) Calculer le modulo 97 et retrancher le reste de 98. Si le résultat comporte un seul chiffre, insérer un zéro devant.
-//Insérer le résultat ainsi obtenu à la position 3 de l’IBAN temporaire créé dans l’étape 1
+// Premièrement récupérer un BBAN Valide comme exercice précédent 
+string BBANUser;
+do
+{
+    Console.WriteLine("Entrez les 12 chiffres de votre BBAN");
+    BBANUser = Console.ReadLine()!;
+}
+while (BBANUser.Length != 12);
+{
+}
 
-////test rapide 1
-//int test1 = 2253812 % 97;
-//Console.WriteLine(test1);
+Console.WriteLine("Parfait nous allons contrôler si votre BBAN est valide , un instant.");
+Thread.Sleep(2000);
 
+long DixPremiersBBAN = long.Parse(BBANUser.Substring(0, 10));
+int DeuxDerniersBBAN = int.Parse(BBANUser.Substring(10, 2));
+int ModuloDixPremiers = (int)DixPremiersBBAN % 97;
 
+if (ModuloDixPremiers != DeuxDerniersBBAN || (ModuloDixPremiers == 0 && DeuxDerniersBBAN != 97))
+{
+    Console.WriteLine("Votre Compte n'est pas Valide , fin de l'opération");
+    Thread.Sleep(2000);
+    Console.Clear();
+    return;
+}
+else
+{
+    Console.WriteLine("Votre Compte est Valide, nous allons le convertir en IBAN Belge");
+}
 
+Thread.Sleep(2000);
 
+//BBAN to IBAN méthode 
+//1) Créer un IBAN temporaire, composé du code du pays : BE pour la Belgique( ATTENTION !!!Convertir les lettres en chiffres, selon le principe "A" vaut "10" ... "Z" vaut "35") suivi de " 00 " 
+//2) Calcul de la clé de contrôle: Avec l'Iban temporaire, calculer le modulo 97 et retrancher le reste de 98. Si le résultat comporte un seul chiffre, insérer un zéro devant.
+//3) Assemblage IBAN définitif : BE + Clé de contrôle + num de compte BBAN
 
+//On génère un code pays sur base de A= 10 et Z = 35 soit "11" et "14" pour BE ici 
+string codePaysBE = "1114";
 
+//Construction Iban temporaire composé ainsi : - Num BBAN + CodePays + 00
+string tempIban = BBANUser + codePaysBE + "00";
 
+//Calcul de la clé de contrôle
+int ModuloIban = (int)(long.Parse(tempIban) % 97);
+int Reste = 98 - (int)ModuloIban;
 
+string CleControle = Reste.ToString("D2");// je passe par un To.String avec "2 Digits" soit une chaine de 2 chiffres pour la clé, comme ça un zéro sera mis si on obtient un seul chiffre
 
+//Reassamblage final 
+string IBANUser = "BE" + CleControle + BBANUser;
+Console.WriteLine($"Votre IBAN est {IBANUser} ");
 
-
-
-
-
+Console.ReadLine();
 
 #endregion
 
