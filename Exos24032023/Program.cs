@@ -130,7 +130,7 @@
 string BBANUser;
 do
 {
-    Console.WriteLine("Entrez les 12 chiffres de votre BBAN");
+    Console.WriteLine("Entrez les 12 chiffres de votre BBAN belge");
     BBANUser = Console.ReadLine()!;
 }
 while (BBANUser.Length != 12);
@@ -153,10 +153,9 @@ if (ModuloDixPremiers != DeuxDerniersBBAN || (ModuloDixPremiers == 0 && DeuxDern
 }
 else
 {
-    Console.WriteLine("Votre Compte est Valide, nous allons le convertir en IBAN Belge");
+    Console.WriteLine("Votre Compte est Valide, nous allons le convertir en IBAN Belge, un instant");
+    Thread.Sleep(2000);
 }
-
-Thread.Sleep(2000);
 
 //BBAN to IBAN méthode 
 //1) Créer un IBAN temporaire, composé du code du pays : BE pour la Belgique( ATTENTION !!!Convertir les lettres en chiffres, selon le principe "A" vaut "10" ... "Z" vaut "35") suivi de " 00 " 
