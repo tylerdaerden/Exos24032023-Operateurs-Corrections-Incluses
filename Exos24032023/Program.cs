@@ -89,7 +89,7 @@
 
 #endregion
 
-#region 2.3 Check BBAN
+#region 2.3 Check BBAN OK ! 
 
 // 2.3
 //Vérification d’un compte bancaire BBAN, si le compte est bon affichez OK sur la console sinon KO.
@@ -121,7 +121,7 @@
 
 #endregion
 
-#region 2.4 BBAN into IBAN
+#region 2.4 BBAN into IBAN OK ! 
 
 //2.4//Transformer un compte bancaire BBAN Belge (xxx xxxxxxx xx) en IBAN(BExx xxxx xxxx xxxx). Trouvez la démarche via un moteur de
 //recherche.
